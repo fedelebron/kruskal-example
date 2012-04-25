@@ -30,11 +30,9 @@ int find_set(int x) {
 }
 
 void merge_set(int x, int y) {
-  int px = find_set(x);
-  int py = find_set(y);
-  if (rank[px] > rank[py]) parent[py] = px;
-  else parent[px] = py;
-  if (rank[px] == rank[py]) ++rank[py];
+  if (rank[x] > rank[y]) parent[y] = x;
+  else parent[x] = y;
+  if (rank[x] == rank[y]) ++rank[y];
 }
 
 double kruskal(int n, edges& es) {
@@ -45,9 +43,9 @@ double kruskal(int n, edges& es) {
   forn(i, n) create_set(i);
   es.sort();
   for (auto& edge : es) {
-    int u = edge.second.first;
-    int v = edge.second.second;
-    if (find_set(u) == find_set(v)) continue;
+    int u = find_set(edge.second.first);
+    int v = find_set(edge.second.second);
+    if (u == v) continue;
     merge_set(u, v);
     cost += edge.first;
     if (!--remaining) break;
