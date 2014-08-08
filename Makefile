@@ -1,10 +1,13 @@
+CC 	   = g++
+CFLGAS = -g -O2 -Wall -std=c++11 
+
 all: Kruskal clean
 
 Kruskal: Kruskal.o
-	g++ -o Kruskal $^
+	g++ -o $@ $^
 
 .cpp.o:
-	g++ -o $@ -c -std=c++11 Kruskal.cpp
+	g++ -o $@ $(CFLGAS) -c $<
 
 clean:
 	rm -f *.o
