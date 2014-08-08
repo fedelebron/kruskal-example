@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <list>
 #include <limits>
@@ -57,12 +58,17 @@ double kruskal(int n, edges& es) {
 
 int main() {
   int n, m;
-  std::cin >> n >> m;
+  std::ifstream input("Kruskal_Data.txt");
+  //std::cin >> n >> m;
+  input >> n >> m;
+  //std::cout << n << m << std::endl;
   edges es;
   forn(i, m) {
     double weight;
     int u, v;
-    std::cin >> weight >> u >> v;
+    //std::cin >> weight >> u >> v;
+    input >> weight >> u >> v;
+    //std::cout << weight << u << v << std::endl;
     es.push_back(make_pair(weight, make_pair(u, v)));
   }
 
